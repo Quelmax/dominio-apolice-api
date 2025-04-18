@@ -1,6 +1,6 @@
 import re
 
-class Cpf:
+class CPF:
     def __init__(self, cpf: str) -> None:
         self._cpf = cpf
         self.__validate_cpf()
@@ -31,8 +31,8 @@ class Cpf:
 
 # Teste básico
 
-try:
-    teste = Cpf('12345678909')
-    print(teste.cpf)
-except ValueError as e:
-    print(f"Erro: {e}")
+# try:
+#     teste = CPF('12345678909')
+#     print(teste.cpf)
+# except ValueError as e:
+#     print(f"Erro: {e}")
