@@ -3,18 +3,19 @@ import re
 class CPF:
     def __init__(self, cpf: str) -> None:
         self._cpf = cpf
-        self.__validate_cpf()
+        self.__validar_cpf()
 
-    def __validate_cpf(self) -> None:
-        """Validates the CPF number."""
+    def __validar_cpf(self) -> None:
+        """Valida o formato e os dígitos do CPF."""
+
         if not self._cpf:
             raise ValueError('O CPF não pode ser vazio.')
-        if not re.fullmatch(r'\d{11}', self._cpf):  # Validate if the CPF is a number with 11 digits
+        if not re.fullmatch(r'\d{11}', self._cpf):  # Valida se o CPF contém apenas dígitos e tem 11 caracteres
             raise ValueError('Formato de CPF inválido. O CPF deve conter 11 dígitos.')
-        self.__validate_cpf_digits()  # Validate if the CPF is valid
+        self.__validar_cpf_digitos() 
 
-    def __validate_cpf_digits(self) -> None:
-        """Validates the CPF check digits."""
+    def __validar_cpf_digitos(self) -> None:
+        """Valida os dígitos verificadores do CPF."""
         # Implementação simplificada para validação dos dígitos verificadores
         cpf = [int(digit) for digit in self._cpf]
         for i in range(9, 11):
@@ -25,7 +26,7 @@ class CPF:
 
     @property
     def cpf(self) -> str:
-        """Returns the validated CPF."""
+        """Retorna o CPF validado."""
         return self._cpf
 
 
