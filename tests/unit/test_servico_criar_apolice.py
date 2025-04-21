@@ -9,7 +9,7 @@ from app.repositories.IApoliceRepository import IApoliceRepository
 
 def test_criar_apolice_sucesso():
     # Mock do repositório
-    repositorio_mock = Mock()
+    repositorio_mock = Mock(spec=IApoliceRepository)
 
     # Instância do serviço
     servico = ServicoCriarApolice(repositorio=repositorio_mock)
@@ -36,7 +36,7 @@ def test_criar_apolice_sucesso():
 
 def test_criar_apolice_data_invalida():
     # Mock do repositório
-    repositorio_mock = Mock()
+    repositorio_mock = Mock(spec=IApoliceRepository)
 
     # Instância do serviço
     servico = ServicoCriarApolice(repositorio=repositorio_mock)
@@ -53,7 +53,7 @@ def test_criar_apolice_data_invalida():
 
 def test_criar_apolice_premio_invalido():
     # Mock do repositório
-    repositorio_mock = Mock()
+    repositorio_mock = Mock(spec=IApoliceRepository)
 
     # Instância do serviço
     servico = ServicoCriarApolice(repositorio=repositorio_mock)

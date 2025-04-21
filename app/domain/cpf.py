@@ -30,10 +30,3 @@ class CPF:
         return self._cpf
 
 
-# Teste básico
-
-# try:
-#     teste = CPF('12345678909')
-#     print(teste.cpf)
-# except ValueError as e:
-#     print(f"Erro: {e}")

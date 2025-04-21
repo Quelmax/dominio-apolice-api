@@ -31,7 +31,7 @@ class ServicoCriarApolice:
 
         #persistência da apolice
         self.repositorio.salvar(nova_apolice)
-      
+        print(f"Apólice criada com sucesso: {nova_apolice.id}")
         return nova_apolice
 
 

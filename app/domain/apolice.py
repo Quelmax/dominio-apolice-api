@@ -17,12 +17,3 @@ class Apolice:
         """Verifica se a apólice está vigente."""
         data_atual = date.today()
         return self.data_inicio <= data_atual <= self.data_fim
-    
-# Teste básico
-
-# try:
-#     teste = Apolice(id=1, cpf="05583711167", data_inicio=date(2023, 1, 1), data_fim=date(2024, 1, 1), valor_premio=1000.0)
-#     print(teste.id)
-#     print(teste.esta_Vigente())
-# except ValueError as e:
-#     print(f"Erro: {e}")
