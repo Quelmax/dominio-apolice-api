@@ -1,4 +1,4 @@
-from domain.apolice import Apolice
+from app.domain.apolice import Apolice
 
 class IApoliceRepository:
     def salvar(self, apolice: Apolice) -> None:

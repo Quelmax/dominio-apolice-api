@@ -1,7 +1,7 @@
 from datetime import date
-from domain.apolice import Apolice
-from domain.cpf import CPF
-from repositories.IApoliceRepository import IApoliceRepository
+from app.domain.apolice import Apolice
+from app.domain.cpf import CPF
+from app.repositories.IApoliceRepository import IApoliceRepository
 
 class ServicoCriarApolice:
     def __init__(self, repositorio: IApoliceRepository):
@@ -10,7 +10,7 @@ class ServicoCriarApolice:
     def executar(self, cpf: str, data_inicio: date, data_fim: date, premio: float) -> Apolice:
 
         #valida o CPF
-        cpf = CPF(valor=cpf)
+        validado = CPF(cpf)
 
         #valida vigencia da apolice
         if data_inicio > data_fim:
@@ -22,11 +22,16 @@ class ServicoCriarApolice:
         
         # Cria a nova apólice 
         nova_apolice = Apolice(
-            cpf=cpf, 
+            id=None,  # ID será gerado automaticamente
+            cpf=validado.cpf, 
             data_inicio=data_inicio,
             data_fim=data_fim, 
-            premio=premio
+            valor_premio=premio
         )
 
         #persistência da apolice
         self.repositorio.salvar(nova_apolice)
+        print(f"Apólice {nova_apolice.id} salva com sucesso!")
+        return nova_apolice
+
+
