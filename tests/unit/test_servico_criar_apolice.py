@@ -18,7 +18,7 @@ def test_criar_apolice_sucesso():
     cpf = "05583711167"
     data_inicio = date(2025, 1, 1)
     data_fim = date(2027, 1, 1)
-    premio = 1000.0
+    premio = 1755.0
 
 
     # Executa o serviço

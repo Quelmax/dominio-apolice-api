@@ -9,3 +9,9 @@ class IApoliceRepository(ABC):
         :param apolice: A apólice a ser salva.
         """
         pass
+    def listar(self) -> list[Apolice]:
+        """
+        Lista todas as apólices no repositório.
+        :return: Uma lista de apólices.
+        """
+        pass
