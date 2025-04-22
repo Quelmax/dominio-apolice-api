@@ -3,3 +3,16 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
+
+# Arquivos de estado do Terraform
+terraform.tfstate
+terraform.tfstate.backup
+
+# Planos gerados pelo Terraform
+*.plan
+
+# Diretório de cache do Terraform
+.terraform/
+
+# Arquivos de variáveis sensíveis
+*.tfvars
