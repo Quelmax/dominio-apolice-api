@@ -1,0 +1,26 @@
+name: Deploy FastAPI com Docker para Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Login no Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build e deploy do Docker direto para o Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: apolice-api-max  
+          slot-name: production
+          package: .
