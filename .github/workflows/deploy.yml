@@ -1,4 +1,4 @@
-name: Deploy FastAPI com Docker para Azure
+name: Deploy API to Azure App Service (Docker with Zip)
 
 on:
   push:
@@ -6,21 +6,37 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Login no Azure
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: |
+        docker build -t apolice-api-max-img .
+
+    - name: Save Docker image as a tar file
+      run: |
+        docker save apolice-api-max-img| gzip > apolice-api-max-img.tar.gz
+
+    - name: Create a zip package for App Service
+      run: |
+        mkdir app-service-package
+        cp Dockerfile apolice-api-max-img.tar.gz app-service-package/
+        zip -r app-service-package.zip app-service-package/
+
+    - name: Login no Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Build e deploy do Docker direto para o Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: apolice-api-max  
-          slot-name: production
-          package: .
+    - name: Upload zip package to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: apolice-api-max
+        package: ./app-service-package.zip
