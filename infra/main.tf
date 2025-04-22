@@ -25,9 +25,8 @@ resource "azurerm_app_service_plan" "asp" {
     kind = "Linux"
     reserved = true
     sku {
-        tier     = "Free"
-        size     = "F1"
-        capacity = 1
+        tier     = "Basic"
+        size     = "B1"
     }
   
 }
