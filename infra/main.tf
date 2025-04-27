@@ -37,10 +37,16 @@ resource "azurerm_app_service" "app" {
     resource_group_name = azurerm_resource_group.rg.name
     app_service_plan_id = azurerm_app_service_plan.asp.id
 
+    site_config {
+      linux_fx_version = "DOCKER|${var.docker_image_name}"
+    }
+
     app_settings = {
         website_port = 80
+        DOCKER_REGISTRY_SERVER_USERNAME = var.docker_regitry_username
+        DOCKER_REGISTRY_SERVER_PASSWORD = var.docker_regitry_password
     }
-    
+ 
     identity {
         type = "SystemAssigned"
     }

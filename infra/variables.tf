@@ -19,3 +19,19 @@ variable "app_service_name" {
   type        = string
 }
 
+variable "docker_image_name" {
+  description = "Nome da imagem Docker publicada no Docker Hub"
+  type        = string
+}
+
+variable "docker_regitry_username" {
+  description = "Nome de usuário do Docker Registry"
+  type        = string  
+  
+}
+
+variable "docker_regitry_password" {
+  description = "Senha do Docker Registry"
+  type        = string  
+  sensitive   = true
+}
